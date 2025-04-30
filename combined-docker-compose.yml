@@ -10,8 +10,6 @@ services:
       - GOOGLE_APPLICATION_CREDENTIALS=/app/gcp-credentials.json
     ports:
       - "80:80"
-    volumes:
-      - ./api/gcp-credentials.json:/app/gcp-credentials.json:ro
     networks:
       - spam-detection-network
 
@@ -21,8 +19,6 @@ services:
     container_name: email-spam-client
     ports:
       - "5001:5001"
-    volumes:
-      - ./client/uploads:/app/uploads
     environment:
       - API_BASE_URL=http://flask-api:80  # Points to the API service using Docker network
     depends_on:
