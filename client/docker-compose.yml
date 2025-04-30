@@ -5,11 +5,11 @@ services:
     build: .
     container_name: email-spam-client
     ports:
-      - "5001:5001"
+      - "80:80"
     volumes:
       - ./uploads:/app/uploads
     environment:
-      - API_BASE_URL=http://api:80  # Points to the API service
+      - API_BASE_URL=http://api:5001  # Points to the API service
     networks:
       - spam-detection-network
 

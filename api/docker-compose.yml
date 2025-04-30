@@ -5,9 +5,9 @@ services:
     build: .
     container_name: email-spam-api
     environment:
-      - PORT=80
+      - PORT=5001
       - GOOGLE_APPLICATION_CREDENTIALS=/app/gcp-credentials.json
     ports:
-      - "80:80"
+      - "5001:5001"
     volumes:
       - ./gcp-credentials.json:/app/gcp-credentials.json:ro
