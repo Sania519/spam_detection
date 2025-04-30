@@ -20,7 +20,7 @@ services:
     ports:
       - "80:80"
     environment:
-      - API_BASE_URL=http://flask-api:80  # Points to the API service using Docker network
+      - API_BASE_URL=http://flask-api:5001  # Points to the API service using Docker network
     depends_on:
       - flask-api
     networks:
