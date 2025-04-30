@@ -5,7 +5,7 @@ import pickle
 from werkzeug.utils import secure_filename
 
 # API base URL - Get from environment variable or use default
-API_BASE_URL = os.environ.get('API_BASE_URL', 'http://localhost:80')
+API_BASE_URL = os.environ.get('API_BASE_URL', 'http://localhost:5001')
 
 # Upload folder
 UPLOAD_FOLDER = 'uploads'
