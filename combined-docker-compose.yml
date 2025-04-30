@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  # API Service
+  flask-api:
+    build: ./api
+    container_name: email-spam-api
+    environment:
+      - PORT=80
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/gcp-credentials.json
+    ports:
+      - "80:80"
+    volumes:
+      - ./api/gcp-credentials.json:/app/gcp-credentials.json:ro
+    networks:
+      - spam-detection-network
+
+  # Client UI
+  client-ui:
+    build: ./client
+    container_name: email-spam-client
+    ports:
+      - "5001:5001"
+    volumes:
+      - ./client/uploads:/app/uploads
+    environment:
+      - API_BASE_URL=http://flask-api:80  # Points to the API service using Docker network
+    depends_on:
+      - flask-api
+    networks:
+      - spam-detection-network
+
+networks:
+  spam-detection-network:
+    driver: bridge

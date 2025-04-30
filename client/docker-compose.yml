@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  client-ui:
+    build: .
+    container_name: email-spam-client
+    ports:
+      - "5001:5001"
+    volumes:
+      - ./uploads:/app/uploads
+    environment:
+      - API_BASE_URL=http://api:80  # Points to the API service
+    networks:
+      - spam-detection-network
+
+networks:
+  spam-detection-network:
+    external: true  # This assumes the API service is already running in this network

@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  flask-api:
+    build: .
+    container_name: email-spam-api
+    environment:
+      - PORT=80
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/gcp-credentials.json
+    ports:
+      - "80:80"
+    volumes:
+      - ./gcp-credentials.json:/app/gcp-credentials.json:ro
